@@ -34,7 +34,6 @@ jobs:
         
     - name: Build iso
       run: |
-        #git clone -b equuleus --single-branch https://github.com/vyos/vyos-build.git
         git clone -b ${{ env.VERSION }} --single-branch https://github.com/vyos/vyos-build.git
         cd vyos-build
         docker run --rm --privileged -v $(pwd):/vyos -w /vyos vyos/vyos-build:equuleus bash -c './configure --architecture amd64 --build-type release --version "${{ steps.date.outputs.time  }}" && sudo make iso'
